@@ -18,16 +18,17 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of mv.usc is to ...
+The goal of mv.usc is to serve as a set of prebuilt shortcut functions that perform elemental multivariate statistical tests. This speeds up the procedure and allows for checks over the tests results.
 
 ## Installation
 
-You can install the development version of mv.usc like so:
+You can install the development version of mv.usc from GitHub with:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("devtools")
+devtools::install_github("antfi03/mv.usc")
 ```
-
+<!-- 
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
@@ -51,4 +52,4 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->

@@ -7,28 +7,29 @@
 
 <!-- badges: end -->
 
-The goal of mv.usc is to …
+The goal of mv.usc is to serve as a set of prebuilt shortcut functions
+that perform elemental multivariate statistical tests. This speeds up
+the procedure and allows for checks over the tests results.
 
 ## Installation
 
-You can install the development version of mv.usc like so:
+You can install the development version of mv.usc from GitHub with:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("devtools")
+devtools::install_github("antfi03/mv.usc")
 ```
 
+<!-- 
 ## Example
-
-This is a basic example which shows you how to solve a common problem:
-
+&#10;This is a basic example which shows you how to solve a common problem:
+&#10;
 ``` r
 library(mv.usc)
 ## basic example code
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
+&#10;What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+&#10;
 ``` r
 summary(cars)
 #>      speed           dist       
@@ -39,13 +40,7 @@ summary(cars)
 #>  3rd Qu.:19.0   3rd Qu.: 56.00  
 #>  Max.   :25.0   Max.   :120.00
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" alt="" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+&#10;You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+&#10;You can also embed plots, for example:
+&#10;<img src="man/figures/README-pressure-1.png" alt="" width="100%" />
+&#10;In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->
