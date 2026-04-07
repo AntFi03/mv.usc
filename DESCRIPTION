@@ -2,10 +2,12 @@ Package: mv.usc
 Title: Multivariate M.Sc. Level Tools
 Version: 0.0.0.9000
 Authors@R: 
-    person("Antón", "Figueroa", "Martínez", "antfigtel@gmail.com", role = c("aut", "cre"))
+    person("Antón", "Figueroa Martínez", , "antfigtel@gmail.com", role = c("aut", "cre"))
 Description: The package includes a bunch of basic functions that cover the basic functionalities of multivariate analysis that are thought in the master of statistical techniques given by the University of Santiago de Compostela (USC).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
