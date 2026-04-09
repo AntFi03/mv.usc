@@ -6,31 +6,34 @@
 \usage{
 test_mean(
   dat = NULL,
-  mu0,
+  mu0 = NULL,
   cov.matrix = NULL,
-  alpha = 0.05,
   n = NULL,
-  x.bar = NULL
+  x.bar = NULL,
+  A = NULL,
+  b = NULL
 )
 }
 \arguments{
-\item{dat}{data.frame or matriz to which apply the test. Default: \code{NULL}.}
+\item{dat}{data.frame or matrix to which apply the test. Default: \code{NULL}.}
 
-\item{mu0}{mean vector under null hypothesis. Mandatory}
+\item{mu0}{mean vector under null hypothesis. Default: \code{NULL}, but mandatory if not generalized test.}
 
-\item{cov.matrix}{population covariance matrix (if known). If not specified, substituted by the sample covariance matrix (with the corresponding adjustment in the test design). Default: \code{NULL}.}
+\item{cov.matrix}{population covariance matrix (if known). If not specified, substituted by the sample covariance matrix (with the corresponding adjustment in the test design). Default: \code{NULL}.'}
 
-\item{alpha}{pre-specified significance level. Default: 0.05.}
-
-\item{n}{number of observations. Just in case "dat = \code{NULL}". Default: \code{NULL}.}
+\item{n}{number of observations. Just in case "dat = \code{NULL}". Default: \code{NULL}.'}
 
 \item{x.bar}{sample mean vector. Just in case "dat = \code{NULL}". Default: \code{NULL}.}
+
+\item{A}{matrix giving the restriction coefficients for a generalized test. Default: \code{NULL}.}
+
+\item{b}{vector giving the right-sides of the restrictions in a generalized test. Default: \code{NULL}.}
 }
 \value{
 Returns the value of the statistic and the p-value of the test.
 }
 \description{
-Function that contrast a simple hypothesis over the means for multivariate normal populations when the covariance matrix is know and when it is not.
+Function that contrast a simple hypothesis over the means for multivariate normal populations when the covariance matrix is know and when it is not. It can also handle generalized mean tests based on A*mu=b hypothesis.
 }
 \examples{
 # Data:
@@ -44,5 +47,4 @@ test_mean(n = 20, cov.matrix = Sigma, x.bar = x.bar, mu0 = mu0)
 }
 \author{
 Antón Figueroa Martínez
-(antfigtel@gmail.com)
 }

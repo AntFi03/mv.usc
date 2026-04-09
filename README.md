@@ -7,9 +7,10 @@
 
 <!-- badges: end -->
 
-The goal of mv.usc is to serve as a set of prebuilt shortcut functions
-that perform elemental multivariate statistical tests. This speeds up
-the procedure and allows for checks over the tests results.
+The goal of mv.usc is to serve as a set of shortcut functions that
+perform elementary multivariate statistical tests. It intended to be
+used as a tool in M.Sc. courses by allowing for checks over the tests
+results.
 
 ## Installation
 

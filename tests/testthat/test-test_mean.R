@@ -41,3 +41,16 @@ test_that("error message check", {
     regexp = "matrix cov.matrix must be specified when no data is available"
   )
 })
+
+# test_that("generalized unknown 1", {
+#   actual <- test_mean(
+#     dat = corcho,
+#     n = n,
+#     x.bar = xbar,
+#     A = A,
+#     b = b
+#   )
+
+#   expect_equal(as.vector(actual$statistic), 6.401857, tolerance = 1e-5)
+#   expect_equal(as.vector(actual$pvalue), 0.002280399, tolerance = 1e-5)
+# })

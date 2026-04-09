@@ -2,7 +2,7 @@ Package: mv.usc
 Title: Multivariate M.Sc. Level Tools
 Version: 0.0.0.9000
 Authors@R: 
-    person("Antón", "Figueroa Martínez", , "antfigtel@gmail.com", role = c("aut", "cre"))
+    person("Antón", "Figueroa Martínez", , c("anton.figueroa@rai.usc.es", "antfigtel@gmail.com"), role = c("aut", "cre"))
 Description: The package includes a bunch of basic functions that cover the basic functionalities of multivariate analysis that are thought in the master of statistical techniques given by the University of Santiago de Compostela (USC).
 License: MIT + file LICENSE
 Encoding: UTF-8

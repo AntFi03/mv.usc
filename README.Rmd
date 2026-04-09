@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of mv.usc is to serve as a set of prebuilt shortcut functions that perform elemental multivariate statistical tests. This speeds up the procedure and allows for checks over the tests results.
+The goal of mv.usc is to serve as a set of shortcut functions that perform elementary multivariate statistical tests. It intended to be used as a tool in M.Sc. courses by allowing for checks over the tests results.
 
 ## Installation
 
@@ -48,8 +48,5 @@ You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-da
 
 You can also embed plots, for example:
 
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
 
 In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->
