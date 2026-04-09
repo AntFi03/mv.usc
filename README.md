@@ -43,5 +43,5 @@ summary(cars)
 ```
 &#10;You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
 &#10;You can also embed plots, for example:
-&#10;<img src="man/figures/README-pressure-1.png" alt="" width="100%" />
-&#10;In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->
+&#10;
+In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->
