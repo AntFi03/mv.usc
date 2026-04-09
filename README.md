@@ -17,6 +17,11 @@ results.
 You can install the development version of mv.usc from GitHub with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("antfi03/mv.usc")
+pak::pak("antfi03/mv.usc")
+```
+
+If you want to install an specific version, you can do so with:
+
+``` r
+pak::pak("antfi03/mv.usc@v0.0.1")
 ```
