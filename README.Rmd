@@ -27,4 +27,4 @@ You can install the development version of mv.usc from GitHub with:
 ``` r
 # install.packages("devtools")
 devtools::install_github("antfi03/mv.usc")
-```
+``` 
