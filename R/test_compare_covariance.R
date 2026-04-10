@@ -18,7 +18,8 @@
 test_compare_covariance <- function(
   dat_list = NULL,
   Sigma_c_list = NULL,
-  n_list = NULL
+  n_list = NULL,
+  verbose = TRUE
 ) {
   # -------------------- Preliminaries ------------------- #
 
@@ -41,7 +42,7 @@ test_compare_covariance <- function(
 
     # Set parameters:
     n_list <- vapply(dat_list, nrow, integer(1))
-    Sigma_c_list <- vapply(dat_list, cov, matrix(0, nrow = d, ncol = d))
+    Sigma_c_list <- lapply(dat_list, cov)
   } else {
     # ----------------- Case Without Data ---------------- #
     # Check if all arguments are present:
