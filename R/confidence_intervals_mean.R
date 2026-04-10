@@ -11,7 +11,7 @@
 #' @param n number of observacions. Just in case "dat = `NULL`". Default: `NULL`. 
 #' @param a vector givin the linear combination of mu elements to which compute the confidence interval. Just in case "simultaneous = `NULL`". Default: `NULL`.
 #' @param alpha significance level for the interval. Default: `0.05`.
-#' @param simultaneous character that selects the method to be applied in the simultaneous confidence intervals computation. Options are: `scheffé` and `bonferroni`. Default: `NULL`.
+#' @param simultaneous character that selects the method to be applied in the simultaneous confidence intervals computation. Options are: `scheffe` and `bonferroni`. Default: `NULL`.
 #' 
 #' @return Returns a matrix with the extremes of the interval(s).
 #' 
@@ -222,7 +222,7 @@ confidence_intervals_mean <- function(
       return(results)
     } else {
       stop(
-        "character simultaneous must take values in {'scheffé', 'bonferroni'}"
+        "character simultaneous must take values in {'scheffe', 'bonferroni'}"
       )
     }
   }
