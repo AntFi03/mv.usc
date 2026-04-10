@@ -27,18 +27,18 @@ test_covariance <- function(
   tests = c("simple")
 ) {
   # -------------------- Preliminaries ------------------- #
-  # Set dimension:
-  d <- ncol(as.matrix(Sigma_0))
-  stopifnot(
-    "dimension d must be >1, since makes no sense to test covariance matrix when there is not one" = (d >
-      1)
-  )
-
   # Auto-set parameters when data is given:
   if (!is.null(dat)) {
     n <- nrow(dat)
     Sigma_c <- cov(dat)
     Sigma_e <- (n - 1) / n * Sigma_c
+
+    # Set dimension:
+    d <- ncol(as.matrix(dat))
+    stopifnot(
+      "dimension d must be >1, since makes no sense to test covariance matrix when there is not one" = (d >
+        1)
+    )
   } else {
     stopifnot(
       "parameter n must be specified when no data is available" = !is.null(n),
@@ -46,6 +46,14 @@ test_covariance <- function(
         Sigma_e
       )
     )
+
+    # Set dimension:
+    d <- ncol(as.matrix(Sigma_e))
+    stopifnot(
+      "dimension d must be >1, since makes no sense to test covariance matrix when there is not one" = (d >
+        1)
+    )
+
     Sigma_c <- n / (n - 1) * Sigma_e
   }
 
