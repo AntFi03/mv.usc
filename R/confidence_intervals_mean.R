@@ -51,7 +51,7 @@ confidence_intervals_mean <- function(
   # cases.
   normal_interval <- function(a, x.bar, Sigma_c, n, alpha) {
     # T-value computation:
-    tvalue <- qt(alpha / 2, n - 1)
+    tvalue <- qt(1 - alpha / 2, n - 1)
 
     # Extremes computation:
     ext1 <- t(a) %*% x.bar - tvalue * sqrt((t(a) %*% Sigma_c %*% a) / n)
@@ -119,7 +119,7 @@ confidence_intervals_mean <- function(
         alpha
       ) {
         # F-value computation:
-        fvalue <- qf(alpha, d, n - d)
+        fvalue <- qf(1 - alpha, d, n - d)
 
         # Extremes computation:
         ext1 <- t(a) %*%
