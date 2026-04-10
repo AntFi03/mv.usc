@@ -6,7 +6,7 @@
 #' Function that performs some contrasts related to the covariance matrix of a normal multivariate sample.
 #'
 #' @param dat data.frame or matrix to which apply the test. Default: `NULL`.
-#' @param Sigma_0 covariance matrix under null hypothesis. Mandatory.
+#' @param Sigma_0 covariance matrix under null hypothesis. Mandatory for "simple" and "proportional" tests. Default:`NULL`
 #' @param Sigma_e Sample covariance matrix. Default: `NULL`.
 #' @param n number of observations. Just in case "dat = `NULL`". Default: `NULL`.
 #' @param tests Vector to determine the tests to perform. Could take integer and character values according to: {1: "simple", 2: "proportional", 3: "independence"}.
@@ -17,11 +17,11 @@
 #' @importFrom stats pf
 #' @importFrom stats printCoefmat
 #' @importFrom stats cov2cor
-#' 
+#'
 #' @export
 test_covariance <- function(
   dat = NULL,
-  Sigma_0,
+  Sigma_0 = NULL,
   Sigma_e = NULL,
   n = NULL,
   tests = c("simple")
@@ -76,6 +76,11 @@ test_covariance <- function(
   # --------------------- Five Cases --------------------- #
   if (chosen_tests[1]) {
     case = 1
+    stopifnot(
+      "matrix argument Sigma_0 must be specified for simple test" = !missing(
+        Sigma_0
+      )
+    )
     # -------- Simple Covariance Matrix Comparison ------- #
     lambda <- eigen(solve(Sigma_0) %*% Sigma_e)$values
     a <- mean(lambda)
@@ -98,6 +103,11 @@ test_covariance <- function(
   }
   if (chosen_tests[2]) {
     case = 2
+    stopifnot(
+      "matrix argument Sigma_0 must be specified for simple test" = !missing(
+        Sigma_0
+      )
+    )
     # ------ Covariance Matrix Proportionality Test ------ #
     lambda <- eigen(solve(Sigma_0) %*% Sigma_e)$values
     a0 <- mean(lambda)

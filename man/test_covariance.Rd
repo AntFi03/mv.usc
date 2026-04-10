@@ -6,7 +6,7 @@
 \usage{
 test_covariance(
   dat = NULL,
-  Sigma_0,
+  Sigma_0 = NULL,
   Sigma_e = NULL,
   n = NULL,
   tests = c("simple")
@@ -15,7 +15,7 @@ test_covariance(
 \arguments{
 \item{dat}{data.frame or matrix to which apply the test. Default: \code{NULL}.}
 
-\item{Sigma_0}{covariance matrix under null hypothesis. Mandatory.}
+\item{Sigma_0}{covariance matrix under null hypothesis. Mandatory for "simple" and "proportional" tests. Default:\code{NULL}}
 
 \item{Sigma_e}{Sample covariance matrix. Default: \code{NULL}.}
 
