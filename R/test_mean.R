@@ -14,6 +14,7 @@
 #' @param x.bar sample mean vector. Just in case "dat = `NULL`". Default: `NULL`.
 #' @param A matrix giving the restriction coefficients for a generalized test. Default: `NULL`.
 #' @param b vector giving the right-sides of the restrictions in a generalized test. Default: `NULL`.
+#' @param verbose bool that enables console summary representation. Default: `TRUE`.
 #'
 #'
 #' @return Returns the value of the statistic and the p-value of the test.
@@ -41,7 +42,8 @@ test_mean <- function(
   n = NULL,
   x.bar = NULL,
   A = NULL,
-  b = NULL
+  b = NULL,
+  verbose = TRUE
 ) {
   # -------------------- Preliminaries ------------------- #
   # Auto-set parameters when data is given:
@@ -101,26 +103,28 @@ test_mean <- function(
       output <- list("statistic" = statistic, "pvalue" = pvalue)
 
       # Message:
-      message(
-        "\nMean Simple Hypothesis Test with Known Covariance Matrix\n"
-      )
-      message("Test definition:")
-      message("  H0: \u03bc = \u03bc_0")
-      message("  Ha: \u03bc != \u03bc_0\n")
-      message("Analysis results:")
-      stats::printCoefmat(
-        list_to_matrix_results(output),
-        digits = 5,
-        signif.stars = TRUE,
-        has.Pvalue = TRUE
-      )
-      message("\nMore info:")
-      message(sprintf(
-        "Number of observations: %d,  Dimension: %d,\nChi-statistic degrees of freedom: %d.",
-        n,
-        d,
-        df
-      ))
+      if (verbose) {
+        message(
+          "\nMean Simple Hypothesis Test with Known Covariance Matrix\n"
+        )
+        message("Test definition:")
+        message("  H0: \u03bc = \u03bc_0")
+        message("  Ha: \u03bc != \u03bc_0\n")
+        message("Analysis results:")
+        stats::printCoefmat(
+          list_to_matrix_results(output),
+          digits = 5,
+          signif.stars = TRUE,
+          has.Pvalue = TRUE
+        )
+        message("\nMore info:")
+        message(sprintf(
+          "Number of observations: %d,  Dimension: %d,\nChi-statistic degrees of freedom: %d.",
+          n,
+          d,
+          df
+        ))
+      }
 
       # End:
       return(output)
@@ -156,27 +160,29 @@ test_mean <- function(
       )
 
       # Message:
-      message(
-        "\nMean Simple Hypothesis Test with Unknown Covariance Matrix\n"
-      )
-      message("Test definition:")
-      message("  H0: \u03bc = \u03bc_0")
-      message("  Ha: \u03bc != \u03bc_0\n")
-      message("Analysis results:")
-      stats::printCoefmat(
-        list_to_matrix_results(output),
-        digits = 5,
-        signif.stars = TRUE,
-        has.Pvalue = TRUE
-      )
-      message("\nMore info:")
-      message(sprintf(
-        "Number of observations: %d,  Dimension: %d,\nF-statistic degrees of freedom: %d and %d.",
-        n,
-        d,
-        df1,
-        df2
-      ))
+      if (verbose) {
+        message(
+          "\nMean Simple Hypothesis Test with Unknown Covariance Matrix\n"
+        )
+        message("Test definition:")
+        message("  H0: \u03bc = \u03bc_0")
+        message("  Ha: \u03bc != \u03bc_0\n")
+        message("Analysis results:")
+        stats::printCoefmat(
+          list_to_matrix_results(output),
+          digits = 5,
+          signif.stars = TRUE,
+          has.Pvalue = TRUE
+        )
+        message("\nMore info:")
+        message(sprintf(
+          "Number of observations: %d,  Dimension: %d,\nF-statistic degrees of freedom: %d and %d.",
+          n,
+          d,
+          df1,
+          df2
+        ))
+      }
 
       # End:
       return(output)
@@ -230,26 +236,28 @@ test_mean <- function(
       output <- list("statistic" = statistic, "pvalue" = pvalue)
 
       # Message:
-      message(
-        "\nMean Generalized Test with Known Covariance Matrix\n"
-      )
-      message("Test definition:")
-      message("  H0: A\u03bc = b")
-      message("  Ha: A\u03bc != b\n")
-      message("Analysis results:")
-      stats::printCoefmat(
-        list_to_matrix_results(output),
-        digits = 5,
-        signif.stars = TRUE,
-        has.Pvalue = TRUE
-      )
-      message("\nMore info:")
-      message(sprintf(
-        "Number of observations: %d,  Dimension: %d,\nChi-statistic degrees of freedom: %d.",
-        n,
-        d,
-        df
-      ))
+      if (verbose) {
+        message(
+          "\nMean Generalized Test with Known Covariance Matrix\n"
+        )
+        message("Test definition:")
+        message("  H0: A\u03bc = b")
+        message("  Ha: A\u03bc != b\n")
+        message("Analysis results:")
+        stats::printCoefmat(
+          list_to_matrix_results(output),
+          digits = 5,
+          signif.stars = TRUE,
+          has.Pvalue = TRUE
+        )
+        message("\nMore info:")
+        message(sprintf(
+          "Number of observations: %d,  Dimension: %d,\nChi-statistic degrees of freedom: %d.",
+          n,
+          d,
+          df
+        ))
+      }
 
       # End:
       return(output)
@@ -284,27 +292,29 @@ test_mean <- function(
       )
 
       # Message:
-      message(
-        "\nMean Generalized Test with Unknown Covariance Matrix\n"
-      )
-      message("Test definition:")
-      message("  H0: A\u03bc = b")
-      message("  Ha: A\u03bc != b\n")
-      message("Analysis results:")
-      stats::printCoefmat(
-        list_to_matrix_results(output),
-        digits = 5,
-        signif.stars = TRUE,
-        has.Pvalue = TRUE
-      )
-      message("\nMore info:")
-      message(sprintf(
-        "Number of observations: %d,  Dimension: %d,\nF-statistic degrees of freedom: %d and %d.",
-        n,
-        d,
-        df1,
-        df2
-      ))
+      if (verbose) {
+        message(
+          "\nMean Generalized Test with Unknown Covariance Matrix\n"
+        )
+        message("Test definition:")
+        message("  H0: A\u03bc = b")
+        message("  Ha: A\u03bc != b\n")
+        message("Analysis results:")
+        stats::printCoefmat(
+          list_to_matrix_results(output),
+          digits = 5,
+          signif.stars = TRUE,
+          has.Pvalue = TRUE
+        )
+        message("\nMore info:")
+        message(sprintf(
+          "Number of observations: %d,  Dimension: %d,\nF-statistic degrees of freedom: %d and %d.",
+          n,
+          d,
+          df1,
+          df2
+        ))
+      }
 
       # End:
       return(output)

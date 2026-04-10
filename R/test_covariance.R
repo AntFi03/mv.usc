@@ -10,6 +10,7 @@
 #' @param Sigma_e Sample covariance matrix. Default: `NULL`.
 #' @param n number of observations. Just in case "dat = `NULL`". Default: `NULL`.
 #' @param tests Vector to determine the tests to perform. Could take integer and character values according to: {1: "simple", 2: "proportional", 3: "independence"}.
+#' @param verbose bool that enables console summary representation. Default: `TRUE`.
 #'
 #' @return Returns a list with the statistics and p-values of the corresponding tests.
 #'
@@ -24,7 +25,8 @@ test_covariance <- function(
   Sigma_0 = NULL,
   Sigma_e = NULL,
   n = NULL,
-  tests = c("simple")
+  tests = c("simple"),
+  verbose = TRUE
 ) {
   # -------------------- Preliminaries ------------------- #
   # Auto-set parameters when data is given:
@@ -161,95 +163,99 @@ test_covariance <- function(
     output <- unlist(output, recursive = FALSE)
 
     # Message:
-    message(
-      sprintf("\n%s\n", possible_tests_long[chosen_tests])
-    )
-    message("Test definition:")
-    switch(
-      possible_tests[chosen_tests],
-      "simple" = message(
-        "  H0: \u03A3 = \u03A3_0\n  Ha: \u03A3 != \u03A3_0\n"
-      ),
-      "proportional" = message(
-        "  H0: \u03A3 = k*\u03A3_0\n  Ha: \u03A3 != k*\u03A3_0\n"
-      ),
-      # "subvector_independence" = message(
-      #   "  H0: \u03A3_{12} = 0\n  Ha: \u03A3_{12} != 0\n"
-      # ),
-      "independence" = message(
-        "  H0: \u03A3 diagonal\n  Ha: \u03A3 free\n"
+    if (verbose) {
+      message(
+        sprintf("\n%s\n", possible_tests_long[chosen_tests])
       )
-    )
-    message("Analysis results:")
-    stats::printCoefmat(
-      list_to_matrix_results(
-        output,
-        rowname = sprintf("Test_%s", possible_tests[chosen_tests])
-      ),
-      digits = 5,
-      signif.stars = TRUE,
-      has.Pvalue = TRUE
-    )
-    message("\nMore info:")
-    message(sprintf(
-      "Number of observations: %d,  Dimension: %d.",
-      n,
-      d
-    ))
+      message("Test definition:")
+      switch(
+        possible_tests[chosen_tests],
+        "simple" = message(
+          "  H0: \u03A3 = \u03A3_0\n  Ha: \u03A3 != \u03A3_0\n"
+        ),
+        "proportional" = message(
+          "  H0: \u03A3 = k*\u03A3_0\n  Ha: \u03A3 != k*\u03A3_0\n"
+        ),
+        # "subvector_independence" = message(
+        #   "  H0: \u03A3_{12} = 0\n  Ha: \u03A3_{12} != 0\n"
+        # ),
+        "independence" = message(
+          "  H0: \u03A3 diagonal\n  Ha: \u03A3 free\n"
+        )
+      )
+      message("Analysis results:")
+      stats::printCoefmat(
+        list_to_matrix_results(
+          output,
+          rowname = sprintf("Test_%s", possible_tests[chosen_tests])
+        ),
+        digits = 5,
+        signif.stars = TRUE,
+        has.Pvalue = TRUE
+      )
+      message("\nMore info:")
+      message(sprintf(
+        "Number of observations: %d,  Dimension: %d.",
+        n,
+        d
+      ))
+    }
 
     # End:
     return(output)
   } else {
     # Message:
-    message(
-      sprintf("\nSet of Covariance Matrix Multivariate Tests:")
-    )
-    results <- matrix(NA, nrow = 1, ncol = 3)
-    for (i in seq_along(chosen_tests)) {
-      if (chosen_tests[i]) {
-        message(
-          sprintf("  - %s", possible_tests_long[i])
-        )
-        results <- rbind(
-          results,
-          list_to_matrix_results(
-            output[[i]],
-            rowname = sprintf("Test %s", possible_tests[i])
+    if (verbose) {
+      message(
+        sprintf("\nSet of Covariance Matrix Multivariate Tests:")
+      )
+      results <- matrix(NA, nrow = 1, ncol = 3)
+      for (i in seq_along(chosen_tests)) {
+        if (chosen_tests[i]) {
+          message(
+            sprintf("  - %s", possible_tests_long[i])
           )
-        )
+          results <- rbind(
+            results,
+            list_to_matrix_results(
+              output[[i]],
+              rowname = sprintf("Test %s", possible_tests[i])
+            )
+          )
+        }
       }
+      results <- results[-1, , drop = FALSE]
+      # results <- results[1:end]
+      # message("\nTest definition:")
+      # switch(
+      #   possible_tests[chosen_tests],
+      #   "simple" = message(
+      #     "  H0: \u03A3 = \u03A3_0\n  Ha: \u03A3 != \u03A3_0\n"
+      #   ),
+      #   "proportional" = message(
+      #     "  H0: \u03A3 = k*\u03A3_0\n  Ha: \u03A3 != k*\u03A3_0\n"
+      #   ),
+      #   "subvector independence" = message(
+      #     "  H0: \u03A3_{12} = 0\n  Ha: \u03A3_{12} != 0\n"
+      #   ),
+      #   "independence" = message(
+      #     "  H0: \u03A3 diagonal\n  Ha: \u03A3 free\n"
+      #   )
+      # )
+      message("\nAnalysis results:")
+      stats::printCoefmat(
+        results,
+        digits = 5,
+        signif.stars = TRUE,
+        has.Pvalue = TRUE
+      )
+      message("\nMore info:")
+      message(sprintf(
+        "Number of observations: %d,  Dimension: %d.",
+        n,
+        d
+      ))
     }
-    results <- results[-1, , drop = FALSE]
-    # results <- results[1:end]
-    # message("\nTest definition:")
-    # switch(
-    #   possible_tests[chosen_tests],
-    #   "simple" = message(
-    #     "  H0: \u03A3 = \u03A3_0\n  Ha: \u03A3 != \u03A3_0\n"
-    #   ),
-    #   "proportional" = message(
-    #     "  H0: \u03A3 = k*\u03A3_0\n  Ha: \u03A3 != k*\u03A3_0\n"
-    #   ),
-    #   "subvector independence" = message(
-    #     "  H0: \u03A3_{12} = 0\n  Ha: \u03A3_{12} != 0\n"
-    #   ),
-    #   "independence" = message(
-    #     "  H0: \u03A3 diagonal\n  Ha: \u03A3 free\n"
-    #   )
-    # )
-    message("\nAnalysis results:")
-    stats::printCoefmat(
-      results,
-      digits = 5,
-      signif.stars = TRUE,
-      has.Pvalue = TRUE
-    )
-    message("\nMore info:")
-    message(sprintf(
-      "Number of observations: %d,  Dimension: %d.",
-      n,
-      d
-    ))
 
     # End:
     return(output)

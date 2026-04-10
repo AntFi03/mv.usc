@@ -13,6 +13,7 @@
 #' @param Sigma2_c sample mean corrected matrix for the second population. Just in case "dat2 = `NULL`". Default: `NULL`.
 #' @param n1 number of observacions from the sample of the first population. Just in case "dat1 = `NULL`". Default: `NULL`.
 #' @param n2 number of observacions from the sample of the second population. Just in case "dat2 = `NULL`". Default: `NULL`.
+#' @param verbose bool that enables console summary representation. Default: `TRUE`.
 #'
 #' @return Returns a list with the values of the statistic(s) and p-value.
 #'
@@ -27,27 +28,36 @@ test_compare_mean <- function(
   Sigma1_c = NULL,
   Sigma2_c = NULL,
   n1 = NULL,
-  n2 = NULL
+  n2 = NULL,
+  verbose = TRUE
 ) {
   # -------------------- Preliminaries ------------------- #
   # Check that information is correctly given by pairs:
   stopifnot(
-    "data matrices dat1 and dat2 must be both specified or bot missing" = identical(missing(
-      dat1
+    "data matrices dat1 and dat2 must be both specified or bot missing" = identical(
+      missing(
+        dat1
+      ),
+      missing(dat2)
     ),
-      missing(dat2)),
-    "vectors x1.bar and x1.bar must be both specified or bot missing" = identical(missing(
-      x1.bar
+    "vectors x1.bar and x1.bar must be both specified or bot missing" = identical(
+      missing(
+        x1.bar
+      ),
+      missing(x2.bar)
     ),
-      missing(x2.bar)),
-    "matrices Sigma1_c and Sigma2_c must be both specified or bot missing" = identical(missing(
-      Sigma1_c
+    "matrices Sigma1_c and Sigma2_c must be both specified or bot missing" = identical(
+      missing(
+        Sigma1_c
+      ),
+      missing(Sigma2_c)
     ),
-      missing(Sigma2_c)),
-    "parameters n1 and n2 must be both specified or bot missing" = identical(missing(
-      n1
-    ),
-      missing(n2))
+    "parameters n1 and n2 must be both specified or bot missing" = identical(
+      missing(
+        n1
+      ),
+      missing(n2)
+    )
   )
 
   # ------------------------ Cases ----------------------- #
@@ -126,28 +136,30 @@ test_compare_mean <- function(
   )
 
   # Message:
-  message(
-    "\nMean Vector Comparison Test Between Two Populations with Unknown Covariance Matrix\n"
-  )
-  message("Test definition:")
-  message("  H0: \u03bc_1 = \u03bc_1")
-  message("  Ha: \u03bc_2 != \u03bc_2\n")
-  message("Analysis results:")
-  stats::printCoefmat(
-    list_to_matrix_results(output),
-    digits = 5,
-    signif.stars = TRUE,
-    has.Pvalue = TRUE
-  )
-  message("\nMore info:")
-  message(sprintf(
-    "Number of observations: %d and %d,  Dimension: %d,\nF-statistic degrees of freedom: %d and %d.",
-    n1,
-    n2,
-    d,
-    df1,
-    df2
-  ))
+  if (verbose) {
+    message(
+      "\nMean Vector Comparison Test Between Two Populations with Unknown Covariance Matrix\n"
+    )
+    message("Test definition:")
+    message("  H0: \u03bc_1 = \u03bc_1")
+    message("  Ha: \u03bc_2 != \u03bc_2\n")
+    message("Analysis results:")
+    stats::printCoefmat(
+      list_to_matrix_results(output),
+      digits = 5,
+      signif.stars = TRUE,
+      has.Pvalue = TRUE
+    )
+    message("\nMore info:")
+    message(sprintf(
+      "Number of observations: %d and %d,  Dimension: %d,\nF-statistic degrees of freedom: %d and %d.",
+      n1,
+      n2,
+      d,
+      df1,
+      df2
+    ))
+  }
 
   # End:
   return(output)

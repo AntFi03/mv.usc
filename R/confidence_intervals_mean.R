@@ -1,23 +1,24 @@
 #' Confidence intervals and simultaneous confidence intervals for the mean vector
-#' 
+#'
 #' @author Antón Figueroa Martínez
-#' 
+#'
 #' @description
 #' Function that computes both confidence intervals for summaries of the mean vector given by a*mu, and simultaneous confidence intervals given either by Scheffé or Bonferroni methods.
-#' 
+#'
 #' @param dat matrix with the original data the test is based on. Default: `NULL`.
 #' @param x.bar sample mean vector. Just in case "dat = `NULL`". Default: `NULL`.
 #' @param Sigma_c sample mean corrected matrix. Just in case "dat = `NULL`". Default: `NULL`.
-#' @param n number of observacions. Just in case "dat = `NULL`". Default: `NULL`. 
+#' @param n number of observacions. Just in case "dat = `NULL`". Default: `NULL`.
 #' @param a vector givin the linear combination of mu elements to which compute the confidence interval. Just in case "simultaneous = `NULL`". Default: `NULL`.
 #' @param alpha significance level for the interval. Default: `0.05`.
 #' @param simultaneous character that selects the method to be applied in the simultaneous confidence intervals computation. Options are: `scheffe` and `bonferroni`. Default: `NULL`.
-#' 
+#' @param verbose bool that enables console summary representation. Default: `TRUE`.
+#'
 #' @return Returns a matrix with the extremes of the interval(s).
-#' 
+#'
 #' @importFrom stats qt
 #' @importFrom stats qf
-#' 
+#'
 #' @export
 confidence_intervals_mean <- function(
   dat = NULL,
@@ -26,7 +27,8 @@ confidence_intervals_mean <- function(
   n = NULL,
   a = NULL,
   alpha = 0.05,
-  simultaneous = NULL
+  simultaneous = NULL,
+  verbose = TRUE
 ) {
   # -------------------- Preliminaries ------------------- #
   # Check if enough arguments:
@@ -79,22 +81,24 @@ confidence_intervals_mean <- function(
     result <- list_to_matrix_results(output, rowname = "Mean interval")
 
     # Message:
-    message(
-      "\nMultivariate Confidence Interval for the Mean\n"
-    )
-    message("Analysis results:")
-    stats::printCoefmat(
-      result,
-      digits = 5,
-      signif.stars = TRUE,
-      has.Pvalue = TRUE
-    )
-    message("\nMore info:")
-    message(sprintf(
-      "Number of observations: %d,  Dimension: %d.",
-      n,
-      d
-    ))
+    if (verbose) {
+      message(
+        "\nMultivariate Confidence Interval for the Mean\n"
+      )
+      message("Analysis results:")
+      stats::printCoefmat(
+        result,
+        digits = 5,
+        signif.stars = TRUE,
+        has.Pvalue = TRUE
+      )
+      message("\nMore info:")
+      message(sprintf(
+        "Number of observations: %d,  Dimension: %d.",
+        n,
+        d
+      ))
+    }
 
     # End:
     return(result)
@@ -161,20 +165,22 @@ confidence_intervals_mean <- function(
       results <- results[-1, , drop = FALSE]
 
       # Message:
-      message(
-        "\nMultivariate Confidence Simultaneous Scheffé Intervals for the Mean\n"
-      )
-      message("Analysis results:")
-      stats::printCoefmat(
-        results,
-        digits = 5
-      )
-      message("\nMore info:")
-      message(sprintf(
-        "Number of observations: %d,  Dimension: %d.",
-        n,
-        d
-      ))
+      if (verbose) {
+        message(
+          "\nMultivariate Confidence Simultaneous Scheffé Intervals for the Mean\n"
+        )
+        message("Analysis results:")
+        stats::printCoefmat(
+          results,
+          digits = 5
+        )
+        message("\nMore info:")
+        message(sprintf(
+          "Number of observations: %d,  Dimension: %d.",
+          n,
+          d
+        ))
+      }
 
       # End:
       return(output)
@@ -186,7 +192,7 @@ confidence_intervals_mean <- function(
         a <- diag(d)[, i]
 
         # Compute interval:
-        output[[i]] <- normal_interval(a, x.bar, Sigma_c, n, alpha/d)
+        output[[i]] <- normal_interval(a, x.bar, Sigma_c, n, alpha / d)
       }
 
       # Transform results:
@@ -203,20 +209,22 @@ confidence_intervals_mean <- function(
       results <- results[-1, , drop = FALSE]
 
       # Message:
-      message(
-        "\nMultivariate Confidence Simultaneous Bonferroni Intervals for the Mean\n"
-      )
-      message("Analysis results:")
-      stats::printCoefmat(
-        results,
-        digits = 5
-      )
-      message("\nMore info:")
-      message(sprintf(
-        "Number of observations: %d,  Dimension: %d.",
-        n,
-        d
-      ))
+      if (verbose) {
+        message(
+          "\nMultivariate Confidence Simultaneous Bonferroni Intervals for the Mean\n"
+        )
+        message("Analysis results:")
+        stats::printCoefmat(
+          results,
+          digits = 5
+        )
+        message("\nMore info:")
+        message(sprintf(
+          "Number of observations: %d,  Dimension: %d.",
+          n,
+          d
+        ))
+      }
 
       # End:
       return(results)

@@ -8,6 +8,7 @@
 #' @param dat_list list of matrices with the original data for each population's sample. Default: `NULL`.
 #' @param Sigma_c_list list of sample mean corrected matrices for the each population. Just in case "dat_list = `NULL`". Default: `NULL`.
 #' @param n_list list of numbers of observacions from the sample of each population. Just in case "dat_list = `NULL`". Default: `NULL`.
+#' @param verbose bool that enables console summary representation. Default: `TRUE`.
 #'
 #' @return Returns a list with the values of the statistic and p-value.
 #'
@@ -107,26 +108,28 @@ test_compare_covariance <- function(
   )
 
   # Message:
-  message(
-    "\nCovariance Matrix Comparison Test Between k Normal Populations\n"
-  )
-  message("Test definition:")
-  message("  H0: \u03A3_1 = ... = \u03A3_k")
-  message("  Ha: \u03A3_i != \u03A3_j\n")
-  message("Analysis results:")
-  stats::printCoefmat(
-    list_to_matrix_results(output),
-    digits = 5,
-    signif.stars = TRUE,
-    has.Pvalue = TRUE
-  )
-  message("\nMore info:")
-  message(sprintf(
-    "Mean number of observations: %d,  Dimension: %d,\nChi-statistic degrees of freedom: %d.",
-    n/k,
-    d,
-    df
-  ))
+  if (verbose) {
+    message(
+      "\nCovariance Matrix Comparison Test Between k Normal Populations\n"
+    )
+    message("Test definition:")
+    message("  H0: \u03A3_1 = ... = \u03A3_k")
+    message("  Ha: \u03A3_i != \u03A3_j\n")
+    message("Analysis results:")
+    stats::printCoefmat(
+      list_to_matrix_results(output),
+      digits = 5,
+      signif.stars = TRUE,
+      has.Pvalue = TRUE
+    )
+    message("\nMore info:")
+    message(sprintf(
+      "Mean number of observations: %d,  Dimension: %d,\nChi-statistic degrees of freedom: %d.",
+      n / k,
+      d,
+      df
+    ))
+  }
 
   # End:
   return(output)
