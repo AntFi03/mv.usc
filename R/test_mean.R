@@ -127,7 +127,7 @@ test_mean <- function(
     } else {
       # -------------- Case With Unknown Sigma ------------- #
       stopifnot(
-        "matrix dat is needed since the original data is used to compute sample covariance matrix" = missing(
+        "matrix dat is needed since the original data is used to compute sample covariance matrix" = !missing(
           dat
         )
       )
