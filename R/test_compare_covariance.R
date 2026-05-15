@@ -125,7 +125,7 @@ test_compare_covariance <- function(
     )
     message("\nMore info:")
     message(sprintf(
-      "Mean number of observations: %d,  Dimension: %d,\nChi-statistic degrees of freedom: %d.",
+      "Mean number of observations: %.2f,  Dimension: %d,\nChi-statistic degrees of freedom: %d.",
       n / k,
       d,
       df
