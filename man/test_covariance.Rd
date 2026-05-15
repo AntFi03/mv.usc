@@ -9,7 +9,8 @@ test_covariance(
   Sigma_0 = NULL,
   Sigma_e = NULL,
   n = NULL,
-  tests = c("simple")
+  tests = c("simple"),
+  verbose = TRUE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ test_covariance(
 \item{n}{number of observations. Just in case "dat = \code{NULL}". Default: \code{NULL}.}
 
 \item{tests}{Vector to determine the tests to perform. Could take integer and character values according to: {1: "simple", 2: "proportional", 3: "independence"}.}
+
+\item{verbose}{bool that enables console summary representation. Default: \code{TRUE}.}
 }
 \value{
 Returns a list with the statistics and p-values of the corresponding tests.

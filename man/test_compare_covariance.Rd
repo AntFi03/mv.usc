@@ -4,7 +4,12 @@
 \alias{test_compare_covariance}
 \title{Covariance matrix comparison test between two populations}
 \usage{
-test_compare_covariance(dat_list = NULL, Sigma_c_list = NULL, n_list = NULL)
+test_compare_covariance(
+  dat_list = NULL,
+  Sigma_c_list = NULL,
+  n_list = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{dat_list}{list of matrices with the original data for each population's sample. Default: \code{NULL}.}
@@ -12,6 +17,8 @@ test_compare_covariance(dat_list = NULL, Sigma_c_list = NULL, n_list = NULL)
 \item{Sigma_c_list}{list of sample mean corrected matrices for the each population. Just in case "dat_list = \code{NULL}". Default: \code{NULL}.}
 
 \item{n_list}{list of numbers of observacions from the sample of each population. Just in case "dat_list = \code{NULL}". Default: \code{NULL}.}
+
+\item{verbose}{bool that enables console summary representation. Default: \code{TRUE}.}
 }
 \value{
 Returns a list with the values of the statistic and p-value.

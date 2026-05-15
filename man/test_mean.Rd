@@ -11,7 +11,8 @@ test_mean(
   n = NULL,
   x.bar = NULL,
   A = NULL,
-  b = NULL
+  b = NULL,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ test_mean(
 \item{A}{matrix giving the restriction coefficients for a generalized test. Default: \code{NULL}.}
 
 \item{b}{vector giving the right-sides of the restrictions in a generalized test. Default: \code{NULL}.}
+
+\item{verbose}{bool that enables console summary representation. Default: \code{TRUE}.}
 }
 \value{
 Returns the value of the statistic and the p-value of the test.

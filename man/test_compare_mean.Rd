@@ -12,7 +12,8 @@ test_compare_mean(
   Sigma1_c = NULL,
   Sigma2_c = NULL,
   n1 = NULL,
-  n2 = NULL
+  n2 = NULL,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ test_compare_mean(
 \item{n1}{number of observacions from the sample of the first population. Just in case "dat1 = \code{NULL}". Default: \code{NULL}.}
 
 \item{n2}{number of observacions from the sample of the second population. Just in case "dat2 = \code{NULL}". Default: \code{NULL}.}
+
+\item{verbose}{bool that enables console summary representation. Default: \code{TRUE}.}
 }
 \value{
 Returns a list with the values of the statistic(s) and p-value.

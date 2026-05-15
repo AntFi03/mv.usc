@@ -1,15 +1,15 @@
 Package: mv.usc
 Title: Multivariate M.Sc. Level Tools
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: 
     person("Antón", "Figueroa Martínez", , c("anton.figueroa@rai.usc.es", "antfigtel@gmail.com"), role = c("aut", "cre"))
 Description: The package includes a bunch of basic functions that cover the basic functionalities of multivariate analysis that are thought in the master of statistical techniques given by the University of Santiago de Compostela (USC).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://github.com/AntFi03/mv.usc
 BugReports: https://github.com/AntFi03/mv.usc/issues
+Config/roxygen2/version: 8.0.0

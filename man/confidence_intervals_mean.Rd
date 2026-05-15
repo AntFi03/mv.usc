@@ -11,7 +11,8 @@ confidence_intervals_mean(
   n = NULL,
   a = NULL,
   alpha = 0.05,
-  simultaneous = NULL
+  simultaneous = NULL,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ confidence_intervals_mean(
 \item{alpha}{significance level for the interval. Default: \code{0.05}.}
 
 \item{simultaneous}{character that selects the method to be applied in the simultaneous confidence intervals computation. Options are: \code{scheffe} and \code{bonferroni}. Default: \code{NULL}.}
+
+\item{verbose}{bool that enables console summary representation. Default: \code{TRUE}.}
 }
 \value{
 Returns a matrix with the extremes of the interval(s).
